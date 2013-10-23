@@ -33,7 +33,7 @@ var App = (function() {
             // Don't die on start
             if(previousY && previousZ && status == "running"){
 
-                var fuzzy  = 0.80;
+                var fuzzy  = 2.0;
 
                 // Checker
                 if((previousY - currentY) > fuzzy){
