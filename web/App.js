@@ -1,7 +1,6 @@
 $(document).ready(function(){
     //initialize socket.io
     App.init();
-
 });
 
 var App = (function() {
@@ -30,8 +29,6 @@ var App = (function() {
         },
 
         shake: function(status, currentX, currentY, currentZ){
-
-            console.log(status);
 
             // Don't die on start
             if(previousY && previousZ && status == "running"){
@@ -65,6 +62,7 @@ var App = (function() {
             console.log(data);
             $("#messageBox").text('Winner: '+data.winner).show();
             $("body").removeClass().addClass('final');
+            status = "stopped"
         }
     }
 })();
