@@ -1,7 +1,6 @@
 $(document).ready(function(){
     //initialize socket.io
     App.init();
-
 });
 
 var App = (function() {
@@ -13,7 +12,7 @@ var App = (function() {
 
     return {
         init: function () {
-            socket = io.connect('localhost');
+            socket = io.connect('54.214.14.94:5556');
             socket.on('join', this.join);
             socket.on('reset', this.reset);
 
@@ -31,12 +30,10 @@ var App = (function() {
 
         shake: function(status, currentX, currentY, currentZ){
 
-            console.log(status);
-
             // Don't die on start
             if(previousY && previousZ && status == "running"){
 
-                var fuzzy  = 0.80;
+                var fuzzy  = 2.0;
 
                 // Checker
                 if((previousY - currentY) > fuzzy){
@@ -65,6 +62,7 @@ var App = (function() {
             console.log(data);
             $("#messageBox").text('Winner: '+data.winner).show();
             $("body").removeClass().addClass('final');
+            status = "stopped"
         }
     }
 })();
