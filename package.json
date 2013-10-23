@@ -1,0 +1,11 @@
+{
+  "name": "deadshake",
+  "description": "shaking dead",
+  "version": "0.0.0",
+  "main": "server/server.js",
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "express": "~3.4.2",
+    "connect": "~2.10.0"
+  }
+}
