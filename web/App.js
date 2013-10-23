@@ -62,7 +62,11 @@ var App = (function() {
             console.log(data);
             $("#messageBox").text('Winner: '+data.winner).show();
             $("body").removeClass().addClass('final');
-            status = "stopped"
+            status = "stopped";
+
+            window.setTimeout(function(){
+                location.reload();
+            }, 1000*10)
         }
     }
 })();
