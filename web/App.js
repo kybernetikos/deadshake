@@ -3,6 +3,12 @@ $(document).ready(function(){
     App.init();
 });
 
+var boing = new Audio("/boing_x.mp3");
+boing.load();
+
+var end = new Audio('/end.ogg');
+end.load();
+
 var App = (function() {
 
     var socket = null;
@@ -16,8 +22,8 @@ var App = (function() {
             socket.on('join', this.join);
             socket.on('reset', this.reset);
 
-            window.addEventListener("deviceorientation", function () {
-                App.shake(status, event.alpha, event.beta, event.gamma);
+            window.addEventListener("devicemotion", function event() {
+                App.shake(status, event.acceleration.x, event.acceleration.y, event.acceleration.z);
             }, true);
         },
 
@@ -35,28 +41,22 @@ var App = (function() {
 
         },
 
-        shake: function(status, currentX, currentY, currentZ){
+        shake: function(status, accelerationX, accelerationY, accelerationZ){
+	        var magnitude = Math.sqrt(accelerationX*accelerationX + accelerationY*accelerationY + accelerationZ*accelerationZ);
 
-            // Don't die on start
-            if(previousY && previousZ && status == "running"){
-
-                var fuzzy  = 2.0;
-
-                // Checker
-                if((previousY - currentY) > fuzzy){
-                    console.log("DEAD Y", previousY, currentY);
-                    this.dead();
-                }
-
-                // Checker
-                if((previousZ - currentZ) > fuzzy){
-                    console.log("DEAD Z", previousZ, currentZ);
-                    this.dead();
-                }
-            }
-
-            previousY = currentY;
-            previousZ = currentZ;
+	        if (magnitude > 2 && magnitude < 4) {
+		        // warn
+		        if (boing.currentTime === 0 || boing.currentTime == boing.duration && (end.currentTime === 0 || end.currentTime === end.duration)) {
+			        boing.play();
+			        document.getElementById('msg').innerHTML = 'sound triggered';
+		        }
+	        } else if (magnitude >= 4) {
+		        // die!
+		        if (end.currentTime === 0 || end.currentTime == end.duration) {
+			        end.play();
+		        }
+		        this.dead();
+	        }
         },
 
         dead: function() {

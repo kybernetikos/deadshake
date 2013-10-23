@@ -1,0 +1,63 @@
+<html>
+<head>
+
+</head>
+<body>
+	hello world
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect();
+
+		socket.on('join', function (data) {
+			console.log('joining team '+data.team);
+		});
+
+		socket.on('reset', function(data) {
+			console.log('resetting, '+data.winner+' team won');
+		});
+
+		function triggerDead() {
+			socket.emit('dead', {});
+		}
+	</script>
+
+	<button onclick="triggerDead();">I'm dead</button>
+
+	<div id='stuff'></div>
+	<div id='msg'></div>
+
+	<script>
+		var boing = new Audio("/boing_x.mp3");
+		boing.load();
+
+		var end = new Audio('/end.ogg');
+		end.load();
+
+		window.ondevicemotion = function(event) {
+			var accelerationX = event.acceleration.x; // - event.accelerationGravity.x;
+			var accelerationY = event.acceleration.y; // - event.accelerationGravity.y;
+			var accelerationZ = event.acceleration.z; // - event.accelerationGravity.z;
+
+			var magnitude = Math.sqrt(accelerationX*accelerationX + accelerationY*accelerationY + accelerationZ*accelerationZ);
+
+			if (magnitude > 2 && magnitude < 4) {
+				// warn
+				if (boing.currentTime === 0 || boing.currentTime == boing.duration && (end.currentTime === 0 || end.currentTime === end.duration)) {
+					boing.play();
+					document.getElementById('msg').innerHTML = 'sound triggered';
+				}
+			} else if (magnitude >= 4) {
+				// die!
+				if (end.currentTime === 0 || end.currentTime == end.duration) {
+					end.play();
+				}
+				document.getElementById('msg').innerHTML = 'sound triggered, die';
+			}
+
+			document.getElementById('stuff').innerHTML = magnitude;
+		};
+	</script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ var Room = require('./Room');
 var app = express();
 var indexFile = require.resolve(__dirname+'/../web/index.html');
 var roomFile =  require.resolve(__dirname+'/../web/room.html');
+
 app.use(express["static"](__dirname+"/../web"));
 app.get('/', function(req,res) {
 	res.sendfile(indexFile);
