@@ -18,13 +18,13 @@ var App = (function() {
 
     return {
         init: function () {
-            socket = io.connect('54.214.14.94:5556');
+            socket = io.connect();
             socket.on('join', this.join);
             socket.on('reset', this.reset);
 
-            window.addEventListener("devicemotion", function event() {
+            window.ondevicemotion =  function(event) {
                 App.shake(status, event.acceleration.x, event.acceleration.y, event.acceleration.z);
-            }, true);
+            };
         },
 
         join: function(data) {
