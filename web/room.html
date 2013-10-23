@@ -1,0 +1,29 @@
+<html>
+<head>
+
+</head>
+<body>
+	hello world
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect('http://localhost');
+
+		socket.on('join', function (data) {
+			console.log('joining team '+data.team);
+		});
+
+		socket.on('reset', function(data) {
+			console.log('resetting, '+data.winner+' team won');
+		});
+
+		function triggerDead() {
+			socket.emit('dead', {});
+		}
+
+	</script>
+
+	<button onclick="triggerDead();">I'm dead</button>
+
+</body>
+</html>
