@@ -8,7 +8,7 @@ var App = (function() {
     var socket = null;
     var previousY = null;
     var previousZ = null;
-    var status = "running"
+    var status = "running";
 
     return {
         init: function () {
@@ -24,8 +24,15 @@ var App = (function() {
         join: function(data) {
             status = "running";
             console.log(data);
-            $("#messageBox").hide();
+            $("#messageBox").text("Your in team "+data.team+".");
             $("body").removeClass().addClass(data.team);
+
+            window.setTimeout(function(){
+                if(!$("body").hasClass("final")){
+                    $("#messageBox").hide("fast");
+                }
+            }, 1000*2);
+
         },
 
         shake: function(status, currentX, currentY, currentZ){
@@ -66,7 +73,7 @@ var App = (function() {
 
             window.setTimeout(function(){
                 location.reload();
-            }, 1000*10)
+            }, 1000*10);
         }
     }
 })();
