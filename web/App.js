@@ -12,7 +12,7 @@ var App = (function() {
 
     return {
         init: function () {
-            socket = io.connect('localhost');
+            socket = io.connect('54.214.14.94:5556');
             socket.on('join', this.join);
             socket.on('reset', this.reset);
 
