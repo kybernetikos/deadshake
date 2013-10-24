@@ -16,7 +16,7 @@ app.use('/room', function(req,res) {
 
 var httpServer = http.createServer(app)
 var io = require('socket.io').listen(httpServer);
-httpServer.listen(5556);
+httpServer.listen(process.env.PORT || 5556);
 
 io.configure(function () {
 	io.set("log level", 2);
