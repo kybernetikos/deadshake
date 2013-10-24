@@ -2,12 +2,18 @@
 <head>
 	<link rel="stylesheet" href="/css/normalize.css">
 	<link rel="stylesheet" href="/css/main.css">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 <body>
+	<div id='topbar'>&nbsp;
+		<span id='status'>..</span>
+		<span id='shakiness'>--</span>
+		<button onclick='App.dead()'>Give Up</button>
+	</div>
+
 	<h1 id="messageBox">Please wait ...</h1>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="/App.js"></script>
 </body>

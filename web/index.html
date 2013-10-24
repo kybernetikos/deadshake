@@ -3,8 +3,15 @@
     <meta name="viewport" content="width=device-width, user-scalable=false;">
 </head>
 <body>
-	hello world index
+	<h1>deadshake</h1>
 
-	<a href="/room/start">START</a>
+	<p>To play, join a room and share the url with your friends.  The team with the last
+	player standing wins.</p>
+
+	<ul>
+		<li>Join a <a href="javascript:void()" onclick='window.location = "/room/"+Math.round(Math.random()*100000000).toString(36);'>random room.</a></li>
+		<li>Join the <a href="/room/fowa2013">fowa2013 room.</a></li>
+		<li>Join the <a href="/room/default">default room.</a></li>
+	</ul>
 </body>
 </html>

@@ -45,6 +45,18 @@ Team.prototype.size = function() {
 	return this.players.length;
 };
 
+Team.prototype.info = function(liveCount) {
+	// tell the clients about the progress of the game.
+	var data = liveCount.map(function(team) {
+		return {name: team.name, players: team.size(), live: team.livePlayers()};
+	});
+	this.players.forEach(function(socket) {
+		socket.emit('info', {
+			rankings: data
+		});
+	});
+};
+
 Team.prototype.reset = function(winner) {
 	this.deadPlayers = [];
 	this.players.forEach(function(socket) {

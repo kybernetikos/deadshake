@@ -238,3 +238,29 @@ textarea[contenteditable] {
        only screen and (min-resolution: 144dpi) {
     /* Style adjustments for viewports that meet the condition */
 }
+
+
+#topbar {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	background-color: black;
+}
+
+#topbar button {
+	right: 0px;
+	position: absolute;
+	width: 100px;
+	height: 100%;
+	border: 1px solid #a9a9a9;
+	background-color: #ddd;
+}
+
+#topbar #status {
+	color: white;
+}
+
+#topbar #shakiness {
+	color: #555;
+}
+
