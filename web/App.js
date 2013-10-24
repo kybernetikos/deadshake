@@ -113,6 +113,9 @@ var App = (function() {
 
 		dead: function() {
 			status = "dead";
+			if (navigator.vibrate) {
+				navigator.vibrate(1000);
+			}
 			playSound("dead");
 			$("#messageBox").text("You're dead!").show();
 			$("body").removeClass().addClass('final');
