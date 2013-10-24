@@ -20,6 +20,9 @@ httpServer.listen(process.env.PORT || 5556);
 
 io.configure(function () {
 	io.set("log level", 2);
+
+	// io.set("transports", ["xhr-polling"]);
+	// io.set("polling duration", 10);
 });
 
 io.sockets.on('connection', onConnect);
